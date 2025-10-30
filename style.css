@@ -1,0 +1,44 @@
+body {
+  background-color:none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+.container {
+  background-color: aqua ;
+  padding: 20px 40px;
+  border-radius: 15px;
+  border: 10px solid blue;
+  text-align: center;
+  padding: 10%
+  
+}
+input {
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px green solid
+  
+}
+h2 {
+  color: black;
+}
+button {
+  margin-top: 10px;
+  padding: 5px 15px;
+  font-weight: bold;
+}
+.result {
+  display: none;
+  background-color: aquamarine;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  
+}
+.result h3 {
+  text-align: center;
+}
+
