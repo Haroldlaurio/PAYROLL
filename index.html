@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payroll Program</title>
+</head>
+<body>
+
+<div class="container" id="inputPage">
+  <h2>PAYROLL PROGRAM</h2>
+  <div><input type="text" id="idNum" placeholder="ID NUMBER"></div>
+  <div><input type="text" id="lname" placeholder="LAST NAME"></div>
+  <div><input type="text" id="fname" placeholder="FIRST NAME"></div>
+  <div><input type="text" id="mname" placeholder="MIDDLE NAME"></div>
+  <div><input type="text" id="position" placeholder="POSITION"></div>
+  <div><input type="number" id="rate" placeholder="RATE"></div>
+  <div><input type="number" id="days" placeholder="WORK DAYS"></div>
+  <button onclick="computePayroll()">SUBMIT</button>
+</div>
+
+<div class="result" id="outputPage">
+  <h3>PAYROLL PROGRAM</h3>
+  <p><b>ID:</b> <span id="outID"></span></p>
+  <p><b>NAME:</b> <span id="outName"></span></p>
+  <p><b>POSITION:</b> <span id="outPos"></span></p>
+  <p><b>RATE:</b> <span id="outRate"></span></p>
+  <p><b>DAYS:</b> <span id="outDays"></span></p>
+  <p><b>GROSS PAY:</b> <span id="outGross"></span></p>
+  <h4>DEDUCTIONS</h4>
+  <p>SSS (5%): <span id="sss"></span></p>
+  <p>PAG-IBIG (3%): <span id="pagibig"></span></p>
+  <p>PHILHEALTH (2%): <span id="philhealth"></span></p>
+  <p>TAX (5%): <span id="tax"></span></p>
+  <p><b>TOTAL DEDUCTION:</b> <span id="totalDed"></span></p>
+  <p><b>NET PAY:</b> <span id="netPay"></span></p>
+  <button onclick="goBack()">BACK</button>
+</div>
+
+<script>
+function computePayroll() {
+  const id = document.getElementById("idNum").value;
+  const lname = document.getElementById("lname").value;
+  const fname = document.getElementById("fname").value;
+  const mname = document.getElementById("mname").value;
+  const pos = document.getElementById("position").value;
+  const rate = parseFloat(document.getElementById("rate").value);
+  const days = parseFloat(document.getElementById("days").value);
+
+  if (!id || !lname || !fname || !pos || isNaN(rate) || isNaN(days)) {
+    alert("Please fill out all fields correctly!");
+    return;
+  }
+
+  const gross = rate * days;
+  const sss = gross * 0.05;
+  const pagibig = gross * 0.03;
+  const philhealth = gross * 0.02;
+  const tax = gross * 0.05;
+  const totalDed = sss + pagibig + philhealth + tax;
+  const net = gross - totalDed;
+
+  document.getElementById("outID").innerText = id;
+  document.getElementById("outName").innerText = `${lname}, ${fname} ${mname}.`;
+  document.getElementById("outPos").innerText = pos;
+  document.getElementById("outRate").innerText = rate.toFixed(2);
+  document.getElementById("outDays").innerText = days;
+  document.getElementById("outGross").innerText = gross.toFixed(2);
+  document.getElementById("sss").innerText = sss.toFixed(2);
+  document.getElementById("pagibig").innerText = pagibig.toFixed(2);
+  document.getElementById("philhealth").innerText = philhealth.toFixed(2);
+  document.getElementById("tax").innerText = tax.toFixed(2);
+  document.getElementById("totalDed").innerText = totalDed.toFixed(2);
+  document.getElementById("netPay").innerText = net.toFixed(2);
+
+  document.getElementById("inputPage").style.display = "none";
+  document.getElementById("outputPage").style.display = "block";
+}
+
+function goBack() {
+  document.getElementById("outputPage").style.display = "none";
+  document.getElementById("inputPage").style.display = "block";
+}
+</script>
+
+</body>
+</html>
